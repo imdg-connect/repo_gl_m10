@@ -64,7 +64,11 @@ def train():
 
         mlflow.log_metric("accuracy", acc)
         mlflow.log_metric("f1_score", f1)
-        mlflow.sklearn.log_model(best_model, "model")
+        mlflow.sklearn.log_model(
+            best_model,
+            "model",
+            skops_trusted_types=["xgboost.core.Booster", "xgboost.sklearn.XGBClassifier"],
+        )
 
         # Save into deployment/ so the pipeline can commit it to the repo
         joblib.dump(best_model, "tourism_project/deployment/best_model.joblib")
