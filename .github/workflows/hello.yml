@@ -1,0 +1,17 @@
+name: Hello World Test
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print Python version
+        run: python3 --version
+      - name: Say hello
+        run: echo "Hello from GitHub Actions! Pipeline plumbing works."
